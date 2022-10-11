@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: digidex-graphql
+  r2dbc:
+    username: postgresql
+    password: password
+    url: r2dbc:postgresql://localhost:5432/digidex?currentSchema=digidex
+graphql:
+  playground:
+    enabled: true
+    settings:
+      schema:
+        polling:
+          enable: false

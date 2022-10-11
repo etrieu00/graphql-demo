@@ -1,0 +1,90 @@
+type Query{
+    digimon(id: ID): [Digimon!]
+    attack(id: ID, filter: AttackFilter): [Attack!]
+    skill: [Skill!]
+}
+
+type Digimon {
+    id: ID!
+    name: String!
+    evolutionType: EvolutionType!
+    digimonType: DigimonType!
+    attributeType: AttributeType!
+    memory: Int!
+    equipSlots: Int!
+    status(level: Int): [Status!]
+}
+
+type Status {
+    id: ID!
+    level: Int!
+    hp: Int!
+    sp: Int!
+    atk: Int!
+    def: Int!
+    spd: Int!
+}
+
+type Attack {
+    id: ID!
+    name: String!
+    spCost: Int!
+    moveType: MoveType!
+    power: Int!
+    attribute: AttributeType!
+    inheritable: Boolean!
+    description: String!
+}
+
+type Skill {
+    id: ID!
+    name: String!
+    description: String!
+}
+
+enum DigimonType {
+    VIRUS,
+    DATA,
+    VACCINE,
+    FREE
+}
+
+enum MoveType {
+    MAGIC,
+    DIRECT,
+    SUPPORT,
+    PHYSICAL,
+    FIXED,
+}
+
+enum AttributeType {
+    PLANT,
+    WIND,
+    EARTH,
+    ELECTRIC,
+    WATER,
+    DARK,
+    LIGHT,
+    FIRE,
+    NEUTRAL,
+    THUNDER
+}
+
+enum EvolutionType {
+    CHAMPION,
+    MEGA,
+    ULTRA,
+    IN_TRAINING,
+    ARMOR,
+    ROOKIE,
+    BABY,
+    ULTIMATE
+}
+
+input AttackFilter {
+    spCost: [Int]
+    moveType: [MoveType]
+    power: [Int]
+    attribute: [AttributeType]
+    inheritable: Boolean
+}
